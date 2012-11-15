@@ -1,0 +1,118 @@
+
+
+#include <stdlib.h>
+#include <stdio.h>
+
+#define MinQueueSize (5)
+
+#define Error(Str)        FatalError(Str)
+#define FatalError(Str)   fprintf(stderr, "%s\n", Str), exit(1)
+
+typedef struct
+{
+	int proto;
+	int time;
+	int seq;
+	
+}  DTNMsg;
+
+
+
+typedef struct {
+  int Capacity;
+  int Front;
+  int Rear;
+  int Size;
+  DTNMsg Array[20];
+} QueueRecord;
+
+int IsEmpty(QueueRecord* Q) {
+  return Q->Size == 0;
+}
+
+int IsFull(QueueRecord* Q) {
+  return Q->Size == Q->Capacity;
+}
+
+QueueRecord* CreateQueue(int MaxElements) {
+QueueRecord QUEUE;
+QueueRecord* Q;
+Q = &QUEUE;
+
+  
+  Q->Capacity = MaxElements;
+  MakeEmpty(Q);
+  return Q;
+}
+
+void MakeEmpty(QueueRecord* Q) {
+
+  Q->Size = 0;
+  Q->Front = 1;
+  Q->Rear = 0;
+
+}
+
+void DisposeQueue(QueueRecord* Q) {
+  if (Q != NULL) {
+    free(Q->Array);
+    free(Q);
+  }
+}
+
+static int Succ(int Value, QueueRecord* Q) {
+  if (++Value == Q->Capacity) {
+    Value = 0;
+  }
+  return Value;
+}
+
+void Enqueue(DTNMsg X, QueueRecord* Q) {
+
+  if (IsFull(Q)) {
+    Error("Enqueue Error: The queue is full.");
+  } else {
+    Q->Size++;
+    Q->Rear = Succ(Q->Rear, Q);
+    Q->Array[Q->Rear] = X;
+  }
+
+}
+
+DTNMsg Front(QueueRecord* Q) {
+DTNMsg X = {0,0,0};
+  if (!IsEmpty(Q)) {
+    return Q->Array[Q->Front];
+  }
+  Error("Front Error: The queue is empty.");
+
+  /* Return value to avoid warnings from the compiler */
+  return X;
+
+}
+
+void Dequeue(QueueRecord* Q) {
+
+  if (IsEmpty(Q)) {
+    Error("Dequeue Error: The queue is empty.");
+  } else {
+    Q->Size--;
+    Q->Front = Succ(Q->Front, Q);
+  }
+
+}
+
+DTNMsg FrontAndDequeue(QueueRecord* Q) {
+
+  DTNMsg X = {0,0,0};
+
+  if (IsEmpty(Q)) {
+    Error("FrontAndDequeue Error: The queue is empty.");
+  } else {
+    Q->Size--;
+    X = Q->Array[Q->Front];
+    Q->Front = Succ(Q->Front, Q);
+  }
+  return X;
+
+}
