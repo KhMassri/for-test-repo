@@ -1,0 +1,36 @@
+
+
+/**
+
+Written by: Khalil Massri
+DTN Implementation
+*/
+
+
+#ifndef QUEUE_H
+#define QUEUE_H
+#define CAPACITY 20
+
+#include "openbeacon-proto.h"
+
+typedef struct {
+  int Front;
+  int Rear;
+  int Size;
+  DTNMsg Array[CAPACITY];
+} QueueRecord;
+
+extern int IsEmpty(QueueRecord* Q);
+
+extern int IsFull(QueueRecord* Q);
+
+extern void MakeEmpty(QueueRecord* Q);
+extern int Succ(int Value, QueueRecord* Q);
+extern void Enqueue(DTNMsg X, QueueRecord* Q);
+extern DTNMsg Front(QueueRecord* Q);
+extern void Dequeue(QueueRecord* Q);
+extern DTNMsg FrontAndDequeue(QueueRecord* Q);
+extern void SortQueue(QueueRecord* Q);
+
+#endif
+

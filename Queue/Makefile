@@ -7,7 +7,7 @@
 # +---------------------------------------------+
 CC=gcc
 
-testQueue: testQueue.o queue.o
+testQueue: testQueue.o queue.o 
 	$(CC) testQueue.o queue.o -o $@
 
 clean:

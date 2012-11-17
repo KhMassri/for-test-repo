@@ -1,38 +1,37 @@
-/*
- *  FILE   : queue.h
- *  AUTHOR : Jeffrey Hunter
- *  WEB    : http://www.iDevelopment.info
- *  NOTES  : Define queue record structure and
- *           all forward declarations.
- */
-
-#include <stdio.h>
-#include <stdlib.h>
-#define Error(Str)        FatalError(Str)
-#define FatalError(Str)   fprintf(stderr, "%s\n", Str), exit(1)
-
-typedef struct
-{
-	int proto;
-	int time;
-	int seq;
-	
-}  DTNMsg;
-
-#ifndef _QueueRecord*_h
-
- typedef struct QueueRecord;
 
 
-  int         IsEmpty(QueueRecord* Q);
-  int         IsFull(QueueRecord* Q);
-  QueueRecord*       CreateQueue(int MaxElements);
-  void        DisposeQueue(QueueRecord* Q);
-  void        MakeEmpty(QueueRecord* Q);
-  void        Enqueue(DTNMsg X, QueueRecord* Q);
-  DTNMsg      Front(QueueRecord* Q);
-  void        Dequeue(QueueRecord* Q);
-  DTNMsg      FrontAndDequeue(QueueRecord* Q);
+/**
 
-#endif  /* _QueueRecord*_h */
+Written by: Khalil Massri
+DTN Implementation
+*/
+
+
+#ifndef QUEUE_H
+#define QUEUE_H
+#define CAPACITY 20
+
+#include "openbeacon-proto.h"
+
+typedef struct {
+  int Front;
+  int Rear;
+  int Size;
+  DTNMsg Array[CAPACITY];
+} QueueRecord;
+
+extern int IsEmpty(QueueRecord* Q);
+
+extern int IsFull(QueueRecord* Q);
+
+extern void MakeEmpty(QueueRecord* Q);
+extern int Succ(int Value, QueueRecord* Q);
+extern void Enqueue(DTNMsg X, QueueRecord* Q);
+extern void PrintQueue(QueueRecord* Q);
+extern DTNMsg Front(QueueRecord* Q);
+extern void Dequeue(QueueRecord* Q);
+extern DTNMsg FrontAndDequeue(QueueRecord* Q);
+extern void SortQueue(QueueRecord* Q);
+
+#endif
 

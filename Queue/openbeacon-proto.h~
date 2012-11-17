@@ -1,0 +1,27 @@
+
+
+#ifndef __OPENBEACON_PROTO_H__
+#define __OPENBEACON_PROTO_H__
+
+#define CAPACITY 20
+
+typedef struct
+{
+	int prob;
+	int time;
+	int seq;
+	
+}  DTNMsg;
+
+
+
+typedef struct {
+  int Front;
+  int Rear;
+  int Size;
+  DTNMsg Array[CAPACITY];
+} QueueRecord;
+
+
+
+#endif/*__OPENBEACON_PROTO_H__*/
