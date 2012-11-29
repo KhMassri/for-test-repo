@@ -46,15 +46,9 @@ void Enqueue(DTNMsg X, QueueRecord* Q) {
 }
 
 
-DTNMsg Front(QueueRecord* Q) {
-DTNMsg temp = {0,0,0};
-  if (!IsEmpty(Q)) {
-    return Q->Array[Q->Front];
-  }
-  
-  /* Return value to avoid warnings from the compiler */
-  return temp;
+DTNMsg* Front(QueueRecord* Q) {
 
+      return &(Q->Array[Q->Front]);
 }
 
 void Dequeue(QueueRecord* Q) {

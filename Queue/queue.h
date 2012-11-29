@@ -27,7 +27,7 @@ extern int IsFull(QueueRecord* Q);
 extern void MakeEmpty(QueueRecord* Q);
 extern int Succ(int Value, QueueRecord* Q);
 extern void Enqueue(DTNMsg X, QueueRecord* Q);
-extern DTNMsg Front(QueueRecord* Q);
+extern DTNMsg* Front(QueueRecord* Q);
 extern void Dequeue(QueueRecord* Q);
 extern DTNMsg FrontAndDequeue(QueueRecord* Q);
 extern void SortQueue(QueueRecord* Q);

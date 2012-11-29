@@ -24,10 +24,13 @@ printf("\n");
 main() {
 
   int e = 0;
+unsigned char my_mac[5] = {0xE7,0xD3,0xF0,0x35,0xAA};
   QueueRecord *Q;
   QueueRecord sa;
   Q = &sa;
-  DTNMsg m;
+ int *p;
+  DTNMsg* mp;
+  DTNMsg m; 
   int i;
 
   MakeEmpty(Q);
@@ -38,8 +41,16 @@ main() {
  }
 
 PrintQueue(Q);
+mp = Front(Q);
+mp->prob = 10;
+SortQueue(Q);
 
- 
+PrintQueue(Q);
+
+
+
+
+/* 
 printf("\n Dequeing.......\n");
 for (i=0; i<7; i++)
 printf(" %d ",(FrontAndDequeue(Q)).prob);
@@ -56,9 +67,34 @@ PrintQueue(Q);
 SortQueue(Q);
 for (i=0; i<5; i++)
 printf(" %d ",(FrontAndDequeue(Q)).prob);
+*/
 
-PrintQueue(Q);
 printf("\n\n");
+
+unsigned char* mac;
+mac = my_mac;
+for(i=0;i<5;i++)
+printf("%x",mac[i]);
+
+unsigned int x;
+x= 0x0000000F;
+x=(x<<4)|0xF;
+unsigned int xx = 0x00000000;
+for(i = 0 ;i<=5;i++){
+x = ((0x00000000 | 0x89B0)<<16) | xx++;
+
+printf("\n\nx = %x\n",x);}
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
