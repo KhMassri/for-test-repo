@@ -1,0 +1,110 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "queue.h"
+
+
+void PrintQueue(QueueRecord* Q) {
+
+int i = Q->Front;
+printf("\n");
+if (IsEmpty(Q))
+printf("Empty Queue...\n");
+else while(1){
+	printf(" %d ",Q->Array[i].seq);
+	if(i == Q->Rear)
+		break;
+	i=Succ(i,Q);
+	}
+printf("\n");  
+}
+
+
+main() {
+
+  int e = 0;
+unsigned char my_mac[5] = {0xE7,0xD3,0xF0,0x35,0xAA};
+  QueueRecord *Q;
+  QueueRecord sa;
+  Q = &sa;
+ int *p;
+  DTNMsg* mp;
+  DTNMsg m; 
+  int i;
+
+  MakeEmpty(Q);
+  printf("Enqueue 1 elements...\n");
+  
+   m.prob = rand()%100;
+   m.seq = 1;
+   Enqueue(m, Q);
+
+m.seq = 2;
+Enqueue(m, Q);
+mp = Front(Q);
+Dequeue(Q);
+Enqueue(*mp, Q);
+
+PrintQueue(Q);
+
+printf("%d   %d  ",Contains(Q,1),Contains(Q,2));
+
+i=20;
+my_mac[0]=i;
+printf("%d    ",my_mac[0]);
+
+//mp = Front(Q);
+//mp->prob = 10;
+//SortQueue(Q);
+
+//PrintQueue(Q);
+/*
+unsigned int a,b;
+a = 0xab000001;
+b=  0xab000000 | 0x00000001;
+ 
+
+if(a==b)
+printf("\n exist....\n");
+else printf("\nNOOOOOOO\n");
+*/
+
+/*
+ 
+printf("\n Dequeing.......\n");
+for (i=0; i<7; i++)
+printf(" %d ",(FrontAndDequeue(Q)).prob);
+
+printf("\n Enqueing.......\n");
+for (i=0; i<5; i++) {
+m.prob = rand()%100;
+printf(" %d ",m.prob);
+Enqueue(m, Q);
+}
+
+
+PrintQueue(Q); 
+SortQueue(Q);
+for (i=0; i<5; i++)
+printf(" %d ",(FrontAndDequeue(Q)).prob);
+*/
+
+printf("\n\n");
+
+/*unsigned char* mac;
+mac = my_mac;
+for(i=0;i<5;i++)
+printf("%x",mac[i]);
+
+unsigned int x;
+x= 0x0000000F;
+x=(x<<4)|0xF;
+unsigned int xx = 0x00000000;
+for(i = 0 ;i<=5;i++){
+x = ((0x00000000 | 0x89B0)<<16) | xx++;
+
+printf("\n\nx = %x\n",x);}
+*/
+
+}
